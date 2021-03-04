@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import argparse
 import sys
 import os
@@ -10,8 +8,8 @@ from torch.utils.data import DataLoader
 from torch.autograd import Variable
 import torch
 
-from models import Generator
-from datasets import ImageDataset
+from code.models import Generator
+from code.datasets import ImageDataset
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--batchSize', type=int, default=1, help='size of the batches')

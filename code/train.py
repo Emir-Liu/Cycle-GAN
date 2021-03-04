@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import argparse
 import itertools
 
@@ -9,14 +7,11 @@ from torch.autograd import Variable
 from PIL import Image
 import torch
 
-from models import Generator
-from models import Discriminator
-from utils import ReplayBuffer
-from utils import LambdaLR
-from utils import Logger
-from utils import weights_init_normal
+from models import Generator,Discriminator
+from utils import ReplayBuffer,LambdaLR,Logger,weights_init_normal
 from datasets import ImageDataset
 
+# 下面是配置相关的参数
 parser = argparse.ArgumentParser()
 parser.add_argument('--epoch', type=int, default=0, help='starting epoch')
 parser.add_argument('--n_epochs', type=int, default=200, help='number of epochs of training')
