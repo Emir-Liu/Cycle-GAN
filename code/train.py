@@ -30,10 +30,11 @@ if opt.epoch == 0:
     netD_A.apply(weights_init_normal)
     netD_B.apply(weights_init_normal)
 else:
-    load_model(netG_A2B,opt.epoch,opt.output_path,'netG_A2B')
-    load_model(netG_B2A, opt.epoch, opt.output_path, 'netG_B2A')
-    load_model(netD_A, opt.epoch, opt.output_path, 'netD_A')
-    load_model(netD_B, opt.epoch, opt.output_path, 'netD_B')
+    load_epoch = opt.epoch-1
+    load_model(netG_A2B,load_epoch,opt.output_path,'netG_A2B')
+    load_model(netG_B2A,load_epoch, opt.output_path, 'netG_B2A')
+    load_model(netD_A,load_epoch, opt.output_path, 'netD_A')
+    load_model(netD_B,load_epoch, opt.output_path, 'netD_B')
     '''
     chkpt = torch.load(opt.output_path+'netG_A2B'+'.ep%d'%opt.epoch)
     netG_A2B.load_state_dict(chkpt)
