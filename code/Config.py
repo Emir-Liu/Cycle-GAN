@@ -4,7 +4,7 @@ class Config:
         # starting epoch
         self.n_epochs = 200
         # number of epochs of training
-        self.batchSize = 10
+        self.batchSize = 1
         # size of the batches
         self.dataroot = '../datasets/horse2zebra/'
         # root directory of the dataset
@@ -23,4 +23,4 @@ class Config:
         self.n_cpu = 8
         # number of cpu threads to use during batch generation
         self.pre_train = 0
-        self.output_path = '../../output'
+        self.output_path = '../../output/'
