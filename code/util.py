@@ -43,3 +43,7 @@ def save_model(model,epoch,file_path,file_name):
     output_path = file_path + file_name + '.ep%d'%epoch
     torch.save(model.state_dict(),output_path)
     print("EP:%d Model Saved on:" % epoch, output_path)
+
+def load_model(model,epoch,file_path,file_name):
+    chkpt = torch.load(file_path + file_name + '.ep%d' % epoch)
+    model.load_state_dict(chkpt)

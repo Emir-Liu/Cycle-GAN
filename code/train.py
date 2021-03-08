@@ -8,7 +8,7 @@ import torch
 
 from models import Generator,Discriminator
 from utils import ReplayBuffer,LambdaLR,Logger,weights_init_normal
-from util import save_model
+from util import save_model,load_model
 from datasets import ImageDataset
 from Config import Config
 
@@ -30,9 +30,14 @@ if opt.epoch == 0:
     netD_A.apply(weights_init_normal)
     netD_B.apply(weights_init_normal)
 else:
+    load_model(netG_A2B,opt.epoch,opt.output_path,'netG_A2B')
+    load_model(netG_B2A, opt.epoch, opt.output_path, 'netG_B2A')
+    load_model(netD_A, opt.epoch, opt.output_path, 'netD_A')
+    load_model(netD_B, opt.epoch, opt.output_path, 'netD_B')
+    '''
     chkpt = torch.load(opt.output_path+'netG_A2B'+'.ep%d'%opt.epoch)
     netG_A2B.load_state_dict(chkpt)
-    
+
     chkpt = torch.load(opt.output_path+'netG_B2A'+'.ep%d'%opt.epoch)
     netG_B2A.load_state_dict(chkpt)
 
@@ -41,6 +46,7 @@ else:
 
     chkpt = torch.load(opt.output_path+'netD_B'+'.ep%d'%opt.epoch)
     netD_B.load_state_dict(chkpt)
+    '''
 
 # 是否使用GPU
 if opt.cuda:
@@ -203,8 +209,4 @@ for epoch in range(opt.epoch, opt.n_epochs):
     save_model(netD_A, epoch, opt.output_path, 'netD_A')
     save_model(netD_B, epoch, opt.output_path, 'netD_B')
 
-    torch.save(netG_A2B.state_dict(), '../../output/netG_A2B.pth')
-    torch.save(netG_B2A.state_dict(), '../../output/netG_B2A.pth')
-    torch.save(netD_A.state_dict(), '../../output/netD_A.pth')
-    torch.save(netD_B.state_dict(), '../../output/netD_B.pth')
 ###################################
